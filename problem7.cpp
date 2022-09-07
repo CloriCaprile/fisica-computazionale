@@ -59,54 +59,47 @@ int main(){
         //ofile << scientific_format(x[i], width, prec ) << scientific_format(u[i], width, prec )<<  std::endl;
     }
 
+    // declare v and fill it with thomas algorithm by calling the function
     std::vector<double> v(n-1);
     v=thomas_algo(a,b,c,g);
+
+    // define the complete solution v_star
     v_star[0]=u[0];
     for(int i=0; i<= n-1; i++){
         v_star[i+1]=v[i];
     }
     v_star[n]=(u[n]);
 
-    std::vector<double> Delta(n+1);
-    std::vector<double> epsilon(n+1);
-    for (int i = 0; i<=n-2; i++){
-        Delta[i] = abs(u[i+1] - v[i]);
-        epsilon[i] = Delta[i]/abs(u[i+1]);
-    }
     
-    // Set a filename
-    //std::string filename = "v1000.txt";
+    // Set some filenames
+    std::string filename = "v1000.txt";
     std::string filename2 = "error.txt";
     std::string filename3 = "rel_error.txt";
 
 
-    // Create and open the output file. Or, technically, create 
-    // an "output file stream" (type std::ofstream) and connect it to our filename.
+    // Create and open the output files
     std::ofstream ofile;
     std::ofstream ofile2;
     std::ofstream ofile3;
 
-    //ofile.open(filename);
+    ofile.open(filename);
     ofile2.open(filename2);
     ofile3.open(filename3);
 
+    // save in file v(x)
     for(int i=0; i<=n; i++){
-    ofile << scientific_format(x[i], width, prec ) << scientific_format(v_star[i], width, prec )<<  std::endl;
+    //ofile << scientific_format(x[i], width, prec ) << scientific_format(v_star[i], width, prec )<<  std::endl;
     }
 
-
+    // save in file error and relative error
     for(int i=0; i<=n-2; i++){
     ofile2 << scientific_format(x[i], width, prec ) << scientific_format( abs(u[i+1]-v[i]), width, prec )<<  std::endl;
     ofile3 << scientific_format(x[i], width, prec ) << scientific_format( abs((u[i+1]-v[i])/u[i+1]), width, prec )<<  std::endl;
-
     }
     // Close the output file
     ofile.close();
     ofile2.close();
-
-
-
-
+    ofile3.close();
 
 
     return 0;
