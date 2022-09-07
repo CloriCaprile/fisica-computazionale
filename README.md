@@ -3,6 +3,18 @@
 ![Language](https://img.shields.io/badge/language-c%2B%2B-blue)
 ![Size](https://img.shields.io/github/repo-size/CloriCaprile/project_1)
 
+Compile with
+
+```bash
+g++ project1.cpp src/useful.cpp -I include -o proj1 
+```
+
+Run with
+
+```bash
+./proj1
+```
+
 This repo is mantained by group 100 of the course FYS3150/4150 at UiO.
 
 ## Table of contents
@@ -41,9 +53,12 @@ Then the executable file is generated in the current directory.
 ## Aknowledgements
 
 [Clori](https://github.com/CloriCaprile)
+
 [Diego](https://github.com/diegoscantam)
+
 [Luca](https://github.com/ngrlcu)
-[Marta](https://github.com/marta)
+
+[Marta](https://github.com/martapisci)
 
 ## License
 
