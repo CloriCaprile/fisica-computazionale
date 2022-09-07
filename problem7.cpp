@@ -64,11 +64,15 @@ int main(){
     v_star[0]=u[0];
     for(int i=0; i<= n-1; i++){
         v_star[i+1]=v[i];
-
     }
     v_star[n]=(u[n]);
 
-
+    std::vector<double> Delta(n+1);
+    std::vector<double> epsilon(n+1);
+    for (int i = 0; i<=n-2; i++){
+        Delta[i] = abs(u[i+1] - v[i]);
+        epsilon[i] = Delta[i]/abs(u[i+1]);
+    }
     
     // Set a filename
     std::string filename = "v1000.txt";
