@@ -8,7 +8,7 @@
 #include "useful.hpp"
 
 int main(){
-    int n=100; //number of steps.
+    int n=100; //number of steps
     double x_min=0;
     double x_max=1;
     int width=16;
