@@ -38,7 +38,7 @@ int main(){
     //std::ofstream ofile;
     //ofile.open(filename);
 
-    // fill x and u vectors, (print them), and store them in a file "u.txt"
+    // fill x and u vectors, (print them), and store them in a file "u.txt" 
     x[0]=x_min;
     for(int i = 0 ; i <= n; i++){
         x[i] = x_min +  i*h;
@@ -104,6 +104,3 @@ int main(){
 
     return 0;
 }
-
-
-
