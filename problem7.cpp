@@ -71,19 +71,38 @@ int main(){
 
     
     // Set a filename
-    std::string filename = "v1000.txt";
+    //std::string filename = "v1000.txt";
+    std::string filename2 = "error.txt";
+    std::string filename3 = "rel_error.txt";
+
+
     // Create and open the output file. Or, technically, create 
     // an "output file stream" (type std::ofstream) and connect it to our filename.
     std::ofstream ofile;
-    ofile.open(filename);
+    std::ofstream ofile2;
+    std::ofstream ofile3;
+
+    //ofile.open(filename);
+    ofile2.open(filename2);
+    ofile3.open(filename3);
 
     for(int i=0; i<=n; i++){
-    //std::cout << i << scientific_format(x[i], width, prec ) << " , " << scientific_format(u[i], width, prec )<<  "\n";
     ofile << scientific_format(x[i], width, prec ) << scientific_format(v_star[i], width, prec )<<  std::endl;
     }
 
+
+    for(int i=0; i<=n-2; i++){
+    ofile2 << scientific_format(x[i], width, prec ) << scientific_format( abs(u[i+1]-v[i]), width, prec )<<  std::endl;
+    ofile3 << scientific_format(x[i], width, prec ) << scientific_format( abs((u[i+1]-v[i])/u[i+1]), width, prec )<<  std::endl;
+
+    }
     // Close the output file
     ofile.close();
+    ofile2.close();
+
+
+
+
 
 
     return 0;
