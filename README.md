@@ -3,18 +3,6 @@
 ![Language](https://img.shields.io/badge/language-c%2B%2B-blue)
 ![Size](https://img.shields.io/github/repo-size/CloriCaprile/project_1)
 
-Compile with
-
-```bash
-g++ project1.cpp src/useful.cpp -I include -o proj1 
-```
-
-Run with
-
-```bash
-./proj1
-```
-
 This repo is mantained by group 100 of the course FYS3150/4150 at UiO.
 
 ## Table of contents
@@ -45,10 +33,14 @@ git clone git@github.com:CloriCaprile/project_1.git
 now just compile and link, if you use `g++` you can simply copy and paste the following
 
 ```bash
-g++ project1.cpp src/useful.cpp -I include -o proj1
+g++ project1.cpp src/useful.cpp -I include -o proj1 
 ```
 
-Then the executable file is generated in the current directory.
+You can then run the executable with
+
+```bash
+./proj1
+```
 
 ## Aknowledgements
 
