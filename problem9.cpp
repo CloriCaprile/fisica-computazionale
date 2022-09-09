@@ -50,7 +50,6 @@ int main ()
 	}
 	
 	// fill vector g
-
 	g[0]=h*h*f[0]+u_0;
 	g[n_steps-2]=h*h*f[n_steps-2]+u_1;
 
@@ -76,20 +75,18 @@ int main ()
 		v[i] = (gt[i] + v[i + 1]) / bt[i];			
 	
 	
-	// fill vector x total (adding to vector x the first and last point)
+	// fill vector x total (adding to vector x the first and last point) and fill vector v total (adding to vector v the boundary conditions)
 	xtot[0]=x_min; 
 	xtot[n_steps]=x_max;
 	
-	for (int i = 1; i < n_steps; i++)
-		xtot[i]=x[i-1];
-	
-	
-	// fill vector v total (adding to vector v the boundary conditions)
 	vtot[0]=u_0; 
 	vtot[n_steps]=u_1;
 	
 	for (int i = 1; i < n_steps; i++)
+	{
+		xtot[i]=x[i-1];
 		vtot[i]=v[i-1];
+	}
 	
 	// print vector v total to file "results.txt"
 	for (int i = 0; i < n_steps+1; i++)
