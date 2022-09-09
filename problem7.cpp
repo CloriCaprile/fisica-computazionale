@@ -9,11 +9,11 @@
 
 
 int main(){
-    int n=1000; //number of steps
+    int n=10000; //number of steps
     double x_min=0;
     double x_max=1;
-    int width=16;
-    int prec=4;
+    int width=30;
+    int prec=10;
     double h = (x_max - x_min) / n;
     std::cout <<"h ="<< h << "\n";
 
@@ -30,7 +30,6 @@ int main(){
     std::vector<double> v_star(n+1);
 
 
-
     // Set a filename 
     std::string filename0 = "data/u"+ std::to_string(n)+ ".txt";
     // Create and open the output file. Or, technically, create 
@@ -39,40 +38,45 @@ int main(){
     ofile0.open(filename0);
 
     // fill x and u vectors, (print them), and store them in a file "u.txt" 
-    x[0]=x_min;
-    for(int i = 0 ; i <= n; i++){
-        x[i] = x_min +  i*h;
-        u[i] =(double) 1 - ( 1- exp(-10) )*x[i] - exp(-10*x[i]);
-        if (i <= n-1){
-            f[i]=100*exp(-10*x[i]);
-            if(i!=0 || i!=n-2){
-                g[i]= h*h*f[i];
-            }
-            else if(i=0){
-                g[i]= h*h*f[i] + u[0];
-            } else if(i=n-2){
-                g[i]= h*h*f[i] + u[n];
-            }
+    
+    x[0] = x_min;
+    u[0] = 0.;
+
+    for (int i=0; i < n; i++){
+        x[i+1] = x[i] + h;
+        u[i+1] = (double) 1 - ( 1- exp(-10) )*x[i+1] - exp(-10*x[i+1]);
+        if (i < n-1){
+            g[i] = h*h*100*exp(-10*x[i+1]);
         }
         // std::cout<< i << "," << f[i] << "," << g[i] << "\n";
         //std::cout << i << scientific_format(x[i], width, prec ) << " , " << scientific_format(u[i], width, prec )<<  "\n";
         ofile0 << scientific_format(x[i], width, prec ) << scientific_format(u[i], width, prec )<<  std::endl;
+
     }
     ofile0.close();
+    u[n] = 0.;
+    g[0] += u[0];
+    g[n-2] += u[n];
+
 
 
     // declare v and fill it with thomas algorithm by calling the function
     std::vector<double> v(n-1);
     v=thomas_algo(a,b,c,g);
+    
 
     // define the complete solution v_star
     v_star[0]=u[0];
-    for(int i=0; i<= n-1; i++){
+    for(int i=0; i<= n-2; i++){
         v_star[i+1]=v[i];
     }
-    v_star[n]=(u[n]);
+    v_star[n]=u[n];
 
-    
+
+    for(int i=0; i<=n; i++){
+        //std::cout << i << " ,"<< x[i] << "  ," << v_star[i] <<" ," <<u[i] << "  ," << v_star[i] - u[i]<<"\n";
+    }
+    // 
     // Set some filenames
     std::string filename = "data/v"+ std::to_string(n)+ ".txt";
     std::string filename2 = "data/error"+ std::to_string(n) +".txt";

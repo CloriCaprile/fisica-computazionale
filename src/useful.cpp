@@ -1,4 +1,5 @@
 #include "useful.hpp"
+#include <iostream>
 
 
 
@@ -28,6 +29,7 @@ std::string scientific_format(const std::vector<double>& v, const int& width, co
 std::vector<double> thomas_algo(std::vector<double>& a, std::vector<double>& b, std::vector<double>& c, std::vector<double>& g){
 
     int n= b.size() + 1;
+
     std::vector<double> b_tilde(n-1);
     std::vector<double> g_tilde(n-1);
     std::vector<double> v(n-1);
@@ -36,14 +38,16 @@ std::vector<double> thomas_algo(std::vector<double>& a, std::vector<double>& b, 
     g_tilde[0]= g[0];
 
     for(int i=1; i<=n-2; i++){
-        b_tilde[i]=b[i] - a[i]*c[i-1]/b_tilde[i-1];
-        g_tilde[i]=g[i] - a[i]*g_tilde[i-1]/b_tilde[i-1];
+        b_tilde[i]=b[i] - a[i-1]*c[i-1]/b_tilde[i-1];
+        g_tilde[i]=g[i] - a[i-1]*g_tilde[i-1]/b_tilde[i-1];
 
     }
     v[n-2]=g_tilde[n-2]/b_tilde[n-2];
     for(int i=n-3; i>=0; i--){
         v[i]=(g_tilde[i]- c[i]*v[i+1])/b_tilde[i];
     }
+
+
     return v;
 
 }
