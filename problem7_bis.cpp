@@ -14,7 +14,7 @@ using namespace std;
 int main()
 {
 
-// Set some parameters for our computation
+	// Set some parameters for our computation
 	int x_min = 0;
 	int x_max = 1;
 	int n_steps = 10;
@@ -74,25 +74,25 @@ int main()
 		g[i]=h*h*f[i]; 
 	
 		
-	// filling vector bt and gt (forward substitution)
+	// fill vector bt and gt (forward substitution)
 	bt[0] = b[0];
 	gt[0] = g[0];
 		
 	for (int i = 1; i < n_steps - 1; i++)
 	{
-		bt[i] = b[i] - ((a[i - 1] * c[i - 1]) / bt[i - 1]);
+		bt[i] = b[i] - ((a[i - 1] * c[i - 1]) / bt[i - 1]);		//changed a index from [i] to [i-1] to match the lenght of vector a
 		gt[i] = g[i] - ((a[i - 1] * gt[i - 1]) / bt[i - 1]);
 	}
 	
 	
-	// filling vector v (back substitution)
+	// fill vector v (back substitution)
 	v[n_steps-2] = gt[n_steps-2] / bt[n_steps-2];
 	
 	for (int i = n_steps - 2 ; i >= 0; i--) 
 		v[i] = (gt[i] - (c[i] * v[i + 1]) )/ bt[i];			
 	
 	
-	// filling vector v total (adding to vector v the boundary conditions)
+	// fill vector v total (adding to vector v the boundary conditions)
 	vtot[0]=u_0; 
 	vtot[n_steps]=u_1;
 	
