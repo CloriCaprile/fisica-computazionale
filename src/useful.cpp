@@ -51,3 +51,29 @@ std::vector<double> thomas_algo(std::vector<double>& a, std::vector<double>& b, 
     return v;
 
 }
+
+std::vector<double> specific_algo(std::vector<double>& g){
+
+    int n = g.size() + 1;
+
+    std::vector<double> b_tilde(n-1);
+    std::vector<double> g_tilde(n-1);
+    std::vector<double> v(n-1);
+
+    b_tilde[0]= 2.;
+    g_tilde[0]= g[0];
+
+    for(int i=1; i<=n-2; i++){
+        b_tilde[i]=2. - 1./b_tilde[i-1];
+        g_tilde[i]=g[i] + 1.*g_tilde[i-1]/b_tilde[i-1];
+
+    }
+    v[n-2]=g_tilde[n-2]/b_tilde[n-2];
+    for(int i=n-3; i>=0; i--){
+        v[i]=(g_tilde[i] + 1.*v[i+1])/b_tilde[i];
+    }
+
+
+    return v;
+
+}
