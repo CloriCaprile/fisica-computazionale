@@ -5,6 +5,7 @@
 #include <cmath>
 #include <algorithm>
 #include <math.h>
+#include "useful.hpp"
 
 
 int main ()
