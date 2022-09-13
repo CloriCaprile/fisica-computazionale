@@ -33,9 +33,9 @@ git clone git@github.com:CloriCaprile/project_1.git
 now just compile and link, if you use `g++` you can simply copy and paste the following
 
 ```bash
-g++ project1.cpp src/useful.cpp -I include -o proj1 
+g++ problem<i>.cpp src/useful.cpp -I include -o prob<i>
 ```
-
+where instead of `<i>` you can insert the problem number of your interest.
 You can then run the executable with
 
 ```bash
