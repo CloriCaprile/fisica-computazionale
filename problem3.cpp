@@ -31,7 +31,7 @@ int main(){
     x[0]=x_min;
     for(int i = 0 ; i <= n; i++){
         x[i] = x_min +  i*h;
-        u[i] =(double) 1 + ( exp(-10*x[i]) -1 )*x[i] - exp(-10*x[i]);
+        u[i] =(double) 1 + ( exp(-10) -1 )*x[i] - exp(-10*x[i]);
         //std::cout << i << scientific_format(x[i], width, prec ) << " , " << scientific_format(u[i], width, prec )<<  "\n";
         ofile << scientific_format(x[i], width, prec ) << scientific_format(u[i], width, prec )<<  std::endl;
 
