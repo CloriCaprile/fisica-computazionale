@@ -39,7 +39,7 @@ where instead of `<i>` you can insert the problem number of your interest.
 You can then run the executable with
 
 ```bash
-./proj1
+./prob<i>
 ```
 
 ## Aknowledgements
